@@ -37,6 +37,10 @@ echo "Demarrage service NTPD"
 echo "Suppression anciens kernels"
 /usr/bin/package-cleanup --oldkernels --count=1
 
+# Reconfiguration VMware Tools (en cas de mise à jour kernel)
+echo "Reconfiguration VMware Tools (en cas de mise à jour kernel)"
+/usr/bin/vmware-config-tools.pl -d
+
 #Suppression traces YUM
 echo "Suppression traces YUM"
 /usr/bin/yum clean all
@@ -91,7 +95,10 @@ echo "Suppression fichier kickstart généré par anaconda lors de l'installatio
 #curl https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/motd > /etc/motd
 
 #Configuration sudoers
-#wget -O https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/sudoers.sh | bash
+#curl https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/sudoers.sh > ~/sudoers.sh
+#chmod +x sudoers.sh
+#~/sudoers.sh
+#rm -f ~/sudoers.sh
 
 # Arrête la VM
 #/sbin/shutdown -h now
