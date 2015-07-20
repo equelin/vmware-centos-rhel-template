@@ -72,4 +72,4 @@ unset HISTFILE
 /bin/rm -f ~root/anaconda-ks.cfg
 
 # Arrête la VM
-/sbin/shutdown -h now
+#/sbin/shutdown -h now
