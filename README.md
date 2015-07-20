@@ -1,0 +1,1 @@
+# vmware-centos-rhel-template
