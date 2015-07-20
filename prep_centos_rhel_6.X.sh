@@ -1,5 +1,4 @@
 #!/bin/sh
-
 # Précos:
 #  - Installation OS minimale
 #  - VMware Tools installés
@@ -70,6 +69,12 @@ unset HISTFILE
 
 # Supprime le fichier kickstart généré par anaconda lors de l'installation de l'OS
 /bin/rm -f ~root/anaconda-ks.cfg
+
+#Download motd depuis https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/motd
+#curl https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/motd > /etc/motd
+
+#Configuration sudoers
+#wget -O https://raw.githubusercontent.com/equelin/vmware-centos-rhel-template/master/sudoers.sh | bash
 
 # Arrête la VM
 #/sbin/shutdown -h now
