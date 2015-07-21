@@ -1,6 +1,7 @@
 #!/bin/bash
 # Précos:
 #  - Installation OS minimale
+#  - Mise à jour yum du système
 #  - VMware Tools installés
 
 # Désactivation logs le temps de la préparation du template
@@ -26,8 +27,8 @@ echo "Mise à jour systeme"
 yum update -y
 
 # Installation packages WGET, NTPD et YUM-UTILS (pour package-cleanup)
-echo "Installation WGET NTP YUM-UTILS"
-yum install -y wget ntp yum-utils
+echo "Installation NTP YUM-UTILS"
+yum install -y ntp yum-utils
 
 # Démarrage service NTPD
 echo "Demarrage service NTPD"
@@ -78,11 +79,6 @@ echo "Vidage répertoires /tmp et /var/tmp"
 echo "Suppresion clés SSH"
 /bin/rm -f /etc/ssh/*key*
 
-# Supprime l'historique des commandes du compte root
-echo "Suppression historique commandes"
-/bin/rm -f ~root/.bash_history
-unset HISTFILE
-
 # Supprime les clés SSH du compte root
 echo "Suppression clé SSH du compte root"
 /bin/rm -rf ~root/.ssh/
@@ -99,6 +95,11 @@ echo "Suppression fichier kickstart généré par anaconda lors de l'installatio
 #chmod +x sudoers.sh
 #~/sudoers.sh
 #rm -f ~/sudoers.sh
+
+# Supprime l'historique des commandes du compte root
+echo "Suppression historique commandes"
+/bin/rm -f ~root/.bash_history
+unset HISTFILE
 
 # Arrête la VM
 #/sbin/shutdown -h now
