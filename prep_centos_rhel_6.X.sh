@@ -38,10 +38,6 @@ echo "Demarrage service NTPD"
 echo "Suppression anciens kernels"
 /usr/bin/package-cleanup --oldkernels --count=1
 
-# Reconfiguration VMware Tools (en cas de mise à jour kernel)
-echo "Reconfiguration VMware Tools (en cas de mise à jour kernel)"
-/usr/bin/vmware-config-tools.pl -d
-
 #Suppression traces YUM
 echo "Suppression traces YUM"
 /usr/bin/yum clean all
