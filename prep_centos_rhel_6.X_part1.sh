@@ -10,18 +10,18 @@
 /sbin/service rsyslog stop
 /sbin/service auditd stop
 
-# Désactivation SELINUX
+# Désactivation SELINUX (optionnel)
 /usr/sbin/setenforce 0
 sed -i -e 's!^SELINUX=.*!SELINUX=disabled!' /etc/selinux/config
 
-# Désactivation IPTABLES
+# Désactivation IPTABLES (optionnel)
 /sbin/service iptables stop
 /sbin/service ip6tables stop
 
 /sbin/chkconfig iptables off
 /sbin/chkconfig ip6tables off
 
-# Préparation installation des Open VMware Tools
+# Préparation installation des VMware Tools
 rpm --import http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-DSA-KEY.pub
 rpm --import http://packages.vmware.com/tools/keys/VMWARE-PACKAGING-GPG-RSA-KEY.pub
 
@@ -36,7 +36,7 @@ EOF
 # Mise à jour globale de l'OS
 yum update -y
 
-# Installation packages WGET, NTPD et YUM-UTILS (pour package-cleanup)
+# Installation packages WGET, NTPD et YUM-UTILS (pour package-cleanup) et VMware Tools
 yum install -y ntp yum-utils vmware-tools-esx-nox
 
 # Démarrage service NTPD

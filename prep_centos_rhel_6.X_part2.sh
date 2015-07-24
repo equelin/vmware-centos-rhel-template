@@ -29,7 +29,7 @@
 /bin/cat /dev/null > /var/log/lastlog
 /bin/cat /dev/null > /var/log/grubby
 
-# Supprime les traces de la carte réseau de la VM dans udev et dans ifcfg-eth0
+# Supprime les traces de la carte réseau de la VM dans udev et dans ifcfg-eth0 - A adapter si vous avez plusieurs cartes réseaux
 /bin/rm -f /etc/udev/rules.d/70*
 
 /bin/sed -i '/^HWADDR=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
@@ -58,7 +58,6 @@
 #rm -f ~/sudoers.sh
 
 # Supprime l'historique des commandes du compte root
-echo "Suppression historique commandes"
 /bin/rm -f ~root/.bash_history
 unset HISTFILE
 
