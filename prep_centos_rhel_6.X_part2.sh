@@ -58,7 +58,6 @@
 #rm -f ~/sudoers.sh
 
 # Supprime l'historique des commandes du compte root
-echo "Suppression historique commandes"
 /bin/rm -f ~root/.bash_history
 unset HISTFILE
 
