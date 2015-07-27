@@ -3,14 +3,14 @@
 # Auteur: Erwan Quelin - http://blog.okcomputer.io
 #
 # Précos:
-#  - Script prep_centos_rhel_6.X_part1.sh
+#  - Script prep_centos_rhel_7.X_part1.sh
 
-# Désactivation logs le temps de la préparation du template
-/sbin/service rsyslog stop
+# Désactivation log
+systemctl stop rsyslog.service
 /sbin/service auditd stop
 
 # Suppression anciens kernels
-/usr/bin/package-cleanup --oldkernels --count=1 -y
+/bin/package-cleanup --oldkernels --count=1 -y
 
 #Suppression traces YUM
 /usr/bin/yum clean all
@@ -18,7 +18,7 @@
 # Force la rotation des logs en fonctions des parametres définis dans /etc/logrotate.conf
 /usr/sbin/logrotate -f /etc/logrotate.conf
 
-#Supprime les archives des logs
+#Supprime les logs
 /bin/rm -f /var/log/*-???????? /var/log/*.gz
 /bin/rm -f /var/log/dmesg.old
 /bin/rm -rf /var/log/anaconda
@@ -28,12 +28,6 @@
 /bin/cat /dev/null > /var/log/wtmp
 /bin/cat /dev/null > /var/log/lastlog
 /bin/cat /dev/null > /var/log/grubby
-
-# Supprime les traces de la carte réseau de la VM dans udev et dans ifcfg-eth0 - A adapter si vous avez plusieurs cartes réseaux
-/bin/rm -f /etc/udev/rules.d/70*
-
-/bin/sed -i '/^HWADDR=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
-/bin/sed -i '/^UUID=/d' /etc/sysconfig/network-scripts/ifcfg-eth0
 
 # Vide les répertoires /tmp et /var/tmp
 /bin/rm -rf /tmp/*
