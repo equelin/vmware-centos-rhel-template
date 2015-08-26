@@ -41,8 +41,5 @@ yum install -y wget chrony perl open-vm-tools open-vm-tools-deploypkg yum-utils
 # Démarrage service Chrony
 systemctl start chronyd.service
 
-# Hack (CentOS 7) pour permettre de d'utiliser la VM en tant que template
-rm -f /etc/redhat-release && touch /etc/redhat-release && echo "Red Hat Enterprise Linux Server release 7.0 (Maipo)" > /etc/redhat-release
-
 # Redémarrage de l'OS
 shutdown -r now
